@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Dinata Saniaa</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg: #f0f7ff;
+  --card: #ffffff;
+  --text: #263c59;
+  --blue: #5798e8;
+  --soft: #dcecff;
+}
+
+body.dark {
+  --bg: #172338;
+  --card: #253650;
+  --text: #f0f6ff;
+  --blue: #8bbcff;
+  --soft: #344b6a;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: .3s;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--card);
+  padding: 18px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 12px #7ca7d522;
+}
+
+.logo {
+  color: var(--blue);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--blue);
+}
+
+.menu-btn, .theme-btn {
+  border: none;
+  background: var(--soft);
+  color: var(--text);
+  padding: 10px 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.menu-btn { display: none; }
+
+section {
+  padding: 75px 8%;
+  scroll-margin-top: 65px;
+}
+
+.home {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.home h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  margin: 15px 0;
+}
+
+.home h1 span { color: var(--blue); }
+
+.home p {
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+.tag {
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.profile {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 7px solid var(--card);
+  box-shadow: 0 8px 25px #5798e833;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 12px 22px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.title {
+  text-align: center;
+  color: var(--blue);
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+
+.card {
+  background: var(--card);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px #5798e817;
+}
+
+.about {
+  max-width: 750px;
+  margin: auto;
+  text-align: center;
+  line-height: 1.9;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card h3 {
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
+.card p {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.skill { margin-bottom: 20px; }
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.bar {
+  height: 12px;
+  background: var(--soft);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 20px;
+}
+
+.project .btn { margin-top: 15px; }
+
+.contact {
+  text-align: center;
+  line-height: 2.2;
+}
+
+.contact a {
+  color: var(--blue);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: var(--card);
+}
+
+@media (max-width: 700px) {
+  header { padding: 15px 5%; }
+
+  .menu-btn { display: inline-block; }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 5%;
+    right: 5%;
+    background: var(--card);
+    padding: 22px;
+    border-radius: 15px;
+    flex-direction: column;
+    box-shadow: 0 5px 20px #5798e822;
+  }
+
+  nav.show { display: flex; }
+
+  .home {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 55px;
+  }
+
+  .profile {
+    width: 190px;
+    height: 190px;
+  }
+
+  section { padding: 60px 6%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MyPortfolio ♡</div>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <nav id="nav">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#education" onclick="closeMenu()">Education</a>
+    <a href="#skills" onclick="closeMenu()">My Skills</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <button class="theme-btn" onclick="toggleTheme()" id="theme">☀️</button>
+  </nav>
+</header>
+
+<section class="home" id="home">
+  <div>
+    <p class="tag">WELCOME TO MY PORTFOLIO ✦</p>
+    <h1>Hello, I'm <span>Dinata Saniaa</span></h1>
+    <p>
+      An enthusiastic student who loves learning about technology,
+      programming, and website development. Welcome to my personal portfolio!
+    </p>
+    <a href="#about" class="btn">Discover More ♡</a>
+  </div>
+
+  <!-- Replace foto.jpg with your own photo filename -->
+  <img src="foto.jpg" alt="Dinata's Profile Photo" class="profile">
+</section>
+
+<section id="about">
+  <h2 class="title">About Me ♡</h2>
+  <div class="card about">
+    <p>
+      Hello! My name is Dinata Tsaniya Azmi, a student of X RPL 3
+      at SMK Krian 1 Sidoarjo. I am interested in technology,
+      especially programming and website development. I want to
+      improve my skills, gain experience, and become more creative
+      while continuing to learn new things.
+    </p>
+  </div>
+</section>
+
+<section id="education">
+  <h2 class="title">My Education 🎓</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Elementary School</h3>
+      <p>MI Nurul Huda</p>
+    </div>
+    <div class="card">
+      <h3>Junior High School</h3>
+      <p>SMP Al Islam Krian</p>
+    </div>
+    <div class="card">
+      <h3>Vocational High School</h3>
+      <p>SMK Krian 1 Sidoarjo</p>
+      <p>Class: X RPL 3</p>
+      <p>Attendance No.: 04</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="title">My Skills ✨</h2>
+  <div class="card">
+    <div class="skill">
+      <div class="skill-info"><span>HTML</span><span>90%</span></div>
+      <div class="bar"><div class="progress" style="width:90%"></div></div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-info"><span>CSS</span><span>85%</span></div>
+      <div class="bar"><div class="progress" style="width:85%"></div></div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-info"><span>JavaScript</span><span>75%</span></div>
+      <div class="bar"><div class="progress" style="width:75%"></div></div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-info"><span>Python</span><span>70%</span></div>
+      <div class="bar"><div class="progress" style="width:70%"></div></div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-info"><span>Java</span><span>65%</span></div>
+      <div class="bar"><div class="progress" style="width:65%"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 class="title">My Projects 💻</h2>
+  <div class="grid">
+    <div class="card project">
+      <h3>Calculator</h3>
+      <p>A simple calculator for basic mathematical operations.</p>
+      <button class="btn" onclick="openDemo('calculator')">Live Demo</button>
+    </div>
+
+    <div class="card project">
+      <h3>To-Do List</h3>
+      <p>A small application to manage daily tasks.</p>
+      <button class="btn" onclick="openDemo('todo')">Live Demo</button>
+    </div>
+
+    <div class="card project">
+      <h3>Digital Clock</h3>
+      <p>A digital clock that displays the current time.</p>
+      <button class="btn" onclick="openDemo('clock')">Live Demo</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="title">Contact Me 💌</h2>
+  <div class="card contact">
+    <p>Have a question or want to connect? Feel free to contact me!</p>
+    <p>📧 Email:
+      <a href="mailto:dinatasaniaaa@gmail.com">dinatasaniaaa@gmail.com</a>
+    </p>
+    <p>📷 Instagram:
+      <a href="https://instagram.com/dinsn1aa" target="_blank" rel="noopener noreferrer">@dinsn1aa</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Made with ♡ by Dinata Tsaniya Azmi</p>
+  <p>© 2026 My Portfolio</p>
+</footer>
+
+<!-- Demo window -->
+<div id="demoBox" style="display:none; position:fixed; inset:0; background:#172338aa; z-index:99; padding:20px; overflow:auto;">
+  <div class="card" style="max-width:420px; margin:50px auto;">
+    <button class="btn" onclick="closeDemo()" style="margin-top:0; float:right">Close ✕</button>
+    <div style="clear:both"></div>
+    <h2 id="demoTitle" style="color:var(--blue); margin:20px 0"></h2>
+    <div id="demoContent"></div>
+  </div>
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav").classList.toggle("show");
+}
+
+function closeMenu() {
+  document.getElementById("nav").classList.remove("show");
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  document.getElementById("theme").textContent =
+    document.body.classList.contains("dark") ? "🌙" : "☀️";
+}
+
+function openDemo(type) {
+  const box = document.getElementById("demoBox");
+  const title = document.getElementById("demoTitle");
+  const content = document.getElementById("demoContent");
+
+  box.style.display = "block";
+
+  if (type === "calculator") {
+    title.textContent = "Calculator";
+    content.innerHTML = `
+      <input id="calcDisplay" readonly value="0"
+        style="width:100%;padding:15px;font-size:24px;margin-bottom:10px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+        ${["7","8","9","/","4","5","6","*","1","2","3","-","C","0","=","+"]
+        .map(v => `<button class="btn" style="margin:0" onclick="calcPress('${v}')">${v}</button>`).join("")}
+      </div>`;
+  }
+
+  if (type === "todo") {
+    title.textContent = "My To-Do List";
+    content.innerHTML = `
+      <form onsubmit="addTask(event)" style="display:flex;gap:8px">
+        <input id="taskInput" placeholder="Write a task..." required
+          style="min-width:0;flex:1;padding:12px">
+        <button class="btn" style="margin:0">Add</button>
+      </form>
+      <ul id="taskList" style="margin:20px;line-height:2"></ul>`;
+  }
+
+  if (type === "clock") {
+    title.textContent = "Digital Clock";
+    content.innerHTML = `
+      <div id="clockDisplay" style="font-size:32px;text-align:center;padding:30px 0"></div>`;
+    updateClock();
+  }
+}
+
+function closeDemo() {
+  document.getElementById("demoBox").style.display = "none";
+}
+
+let calcExpression = "";
+
+function calcPress(value) {
+  const display = document.getElementById("calcDisplay");
+  if (!display) return;
+
+  if (value === "C") {
+    calcExpression = "";
+    display.value = "0";
+  } else if (value === "=") {
+    try {
+      if (!/^[0-9+*/.() -]+$/.test(calcExpression)) throw Error();
+      const result = Function('"use strict"; return (' + calcExpression + ')')();
+      if (!Number.isFinite(result)) throw Error();
+      display.value = result;
+      calcExpression = String(result);
+    } catch {
+      display.value = "Error";
+      calcExpression = "";
+    }
+  } else {
+    calcExpression += value;
+    display.value = calcExpression;
+  }
+}
+
+function addTask(event) {
+  event.preventDefault();
+  const input = document.getElementById("taskInput");
+  const list = document.getElementById("taskList");
+  if (!input.value.trim()) return;
+
+  const item = document.createElement("li");
+  const label = document.createElement("label");
+  const check = document.createElement("input");
+  check.type = "checkbox";
+  check.style.marginRight = "8px";
+
+  const text = document.createElement("span");
+  text.textContent = input.value.trim();
+
+  check.addEventListener("change", () => {
+    text.style.textDecoration = check.checked ? "line-through" : "none";
+  });
+
+  const remove = document.createElement("button");
+  remove.textContent = " ✕";
+  remove.style.marginLeft = "10px";
+  remove.onclick = () => item.remove();
+
+  label.append(check, text);
+  item.append(label, remove);
+  list.appendChild(item);
+  input.value = "";
+}
+
+function updateClock() {
+  const display = document.getElementById("clockDisplay");
+  if (display) {
+    display.textContent = new Date().toLocaleTimeString("en-GB");
+    setTimeout(updateClock, 1000);
+  }
+}
+</script>
+
+</body>
+      </html>
